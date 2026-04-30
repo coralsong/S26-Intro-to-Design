@@ -18,6 +18,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const delis = [
     {
         name: 'Square Deli',
+        detailsId: 'square-deli',
         address: '168 8th Ave, New York, NY 10011',
         lat: 40.74235,
         lng: -74.00079,
@@ -25,6 +26,7 @@ const delis = [
     },
     {
         name: 'Kips Bay Deli',
+        detailsId: 'kipsbay-deli',
         address: '545 2nd Ave, New York, NY 10016',
         lat: 40.74224,
         lng: -73.97835,
@@ -32,6 +34,7 @@ const delis = [
     },
     {
         name: 'Stuytown Market Place',
+        detailsId: 'stuytown-market',
         address: '279 1st Ave, New York, NY 10003',
         lat: 40.73263,
         lng: -73.98133,
@@ -39,13 +42,36 @@ const delis = [
     }
 ];
 
+function openDeliDetails(detailsId) {
+    const deliSection = document.getElementById(detailsId);
+    const details = deliSection?.querySelector('details');
+
+    if (!deliSection || !details) {
+        return;
+    }
+
+    details.open = true;
+    deliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 const deliMarkers = delis.map((deli) => {
     const marker = L.marker([deli.lat, deli.lng]).addTo(map);
 
     marker.bindPopup(`
-        <b>${deli.name}</b><br>
+        <button class="popup-store-name" type="button" data-details-id="${deli.detailsId}">
+            ${deli.name}
+        </button><br>
         <a href="${deli.url}" target="_blank" rel="noopener">${deli.address}</a>
     `);
+
+    marker.on('popupopen', (event) => {
+        const popupElement = event.popup.getElement();
+        const storeButton = popupElement.querySelector('.popup-store-name');
+
+        storeButton.addEventListener('click', () => {
+            openDeliDetails(storeButton.dataset.detailsId);
+        });
+    });
 
     return marker;
 });
