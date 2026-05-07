@@ -42,6 +42,115 @@ const delis = [
     }
 ];
 
+const redDeliIcon = L.divIcon({
+    className: 'red-deli-pin',
+    iconSize: [34, 46],
+    iconAnchor: [17, 42],
+    popupAnchor: [0, -38],
+    html: `
+        <svg viewBox="0 0 34 46" width="34" height="46" aria-hidden="true">
+            <path d="M17 45C13 36 3 27 3 17A14 14 0 0 1 31 17C31 27 21 36 17 45Z"
+                fill="#ff1616" stroke="#ffffff" stroke-width="3" />
+            <circle cx="17" cy="17" r="6" fill="#ffffff" />
+        </svg>
+    `
+});
+
+const tramIcon = L.divIcon({
+    className: 'tram-marker',
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+    html: '<span aria-hidden="true">🚋</span>'
+});
+
+const deliRoutes = [
+    {
+        color: '#0057b8',
+        stops: [
+            [40.74235, -74.00079],
+            [40.7472, -73.9917],
+            [40.74224, -73.97835]
+        ]
+    },
+    {
+        color: '#00843d',
+        stops: [
+            [40.74224, -73.97835],
+            [40.7373, -73.97835],
+            [40.73263, -73.98133]
+        ]
+    },
+    {
+        color: '#ff6319',
+        stops: [
+            [40.73263, -73.98133],
+            [40.7352, -73.9907],
+            [40.7391, -73.9962],
+            [40.74235, -74.00079]
+        ]
+    }
+];
+
+function drawMetroRoute(route) {
+    L.polyline(route.stops, {
+        color: '#ffffff',
+        weight: 13,
+        opacity: 0.95,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(route.stops, {
+        color: route.color,
+        weight: 8,
+        opacity: 0.95,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+}
+
+deliRoutes.forEach(drawMetroRoute);
+
+const tramPath = [
+    [40.74235, -74.00079],
+    [40.7472, -73.9917],
+    [40.74224, -73.97835],
+    [40.7373, -73.97835],
+    [40.73263, -73.98133],
+    [40.7352, -73.9907],
+    [40.7391, -73.9962],
+    [40.74235, -74.00079]
+];
+
+const tramMarker = L.marker(tramPath[0], {
+    icon: tramIcon,
+    interactive: false,
+    zIndexOffset: 1000
+}).addTo(map);
+
+let tramSegment = 0;
+let tramProgress = 0;
+
+function moveTram() {
+    const start = tramPath[tramSegment];
+    const end = tramPath[(tramSegment + 1) % tramPath.length];
+    const lat = start[0] + (end[0] - start[0]) * tramProgress;
+    const lng = start[1] + (end[1] - start[1]) * tramProgress;
+
+    tramMarker.setLatLng([lat, lng]);
+
+    tramProgress += 0.008;
+
+    if (tramProgress >= 1) {
+        tramProgress = 0;
+        tramSegment = (tramSegment + 1) % tramPath.length;
+    }
+
+    requestAnimationFrame(moveTram);
+}
+
+moveTram();
+
 function openDeliDetails(detailsId) {
     const deliSection = document.getElementById(detailsId);
     const details = deliSection?.querySelector('details');
@@ -55,7 +164,7 @@ function openDeliDetails(detailsId) {
 }
 
 const deliMarkers = delis.map((deli) => {
-    const marker = L.marker([deli.lat, deli.lng]).addTo(map);
+    const marker = L.marker([deli.lat, deli.lng], { icon: redDeliIcon }).addTo(map);
 
     marker.bindPopup(`
         <button class="popup-store-name" type="button" data-details-id="${deli.detailsId}">
@@ -104,7 +213,7 @@ if (submissionForm && storeNameInput && eggPriceInput && submitButton && cancelB
             return;
         }
 
-        const marker = L.marker(clickedLatLng).addTo(map);
+        const marker = L.marker(clickedLatLng, { icon: redDeliIcon }).addTo(map);
         marker.bindPopup(`
             <b>${storeName}</b><br>
             Eggs: $${parseFloat(eggPrice).toFixed(2)} per dozen
