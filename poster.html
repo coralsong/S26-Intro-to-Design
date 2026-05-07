@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deli Workers of NYC Poster</title>
+    <link rel="stylesheet" href="poster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body class="intro-active">
+    <div class="title-screen" id="title-screen" aria-label="Opening title">
+        <div class="title-card">
+            <p class="title-kicker">Deli Workers of NYC</p>
+            <h1>The Secret Language<br>of Bodegas</h1>
+            <p class="title-credit">Intro to Design Studies</p>
+        </div>
+    </div>
+
+    <header class="poster-header">
+        <div class="course-tag">Intro to<br>Design<br>Studies</div>
+        <div class="school-tag">The New School<br>Parsons School of Design</div>
+        <h1>Deli Workers of NYC</h1>
+    </header>
+
+    <div class="name-ticker" aria-label="Project collaborators">
+        <div class="ticker-track">
+            <span>Tony</span>
+            <span>Neia</span>
+            <span>Mimansaa</span>
+            <span>Victoria</span>
+            <span>Coral</span>
+            <span>Yashvi</span>
+            <span>Pauline</span>
+            <span>Tony</span>
+            <span>Neia</span>
+            <span>Mimansaa</span>
+            <span>Victoria</span>
+            <span>Coral</span>
+            <span>Yashvi</span>
+            <span>Pauline</span>
+        </div>
+    </div>
+
+    <main class="poster-page">
+        <section class="hero">
+            <p class="eyebrow">The Secret Language of</p>
+            <h2>Bodegas</h2>
+            <div class="food-row" aria-hidden="true">
+                <span>🥪</span>
+                <span>☕</span>
+                <span>🥯</span>
+                <span>🌮</span>
+                <span>🧃</span>
+            </div>
+        </section>
+
+        <section class="content-grid">
+            <div class="map-panel">
+                <div class="burst-label">Learn from<br>the ownders!</div>
+                <div id="map"></div>
+            </div>
+
+            <aside class="info">
+                <div class="store-names">
+                    <div id="square-deli" class="store-card">
+                        <details>
+                            <summary>Square Deli</summary>
+                            <p><a href="https://www.yelp.com/biz/square-deli-new-york-2">168 8th Ave, New York, NY 10011</a></p>
+                            <p>Interviewed by Victoria Scholl</p>
+                            <p>For this interview, I spoke with Jimmy, a worker at a local deli in New York City who has lived in the city his whole life. Although he is not the owner, he has been working at the deli for about two years, and the store itself has been there for around eight years. From our conversation, it became clear that while the physical layout of the deli hasn’t changed much over time, small design decisions still impact the experience. For example, Jimmy mentioned that they removed a glass barrier near the counter, which made the space feel more open and improved how customers perceived the store. More importantly, the deli functions as a strong community space.</p>
+                        </details>
+                    </div>
+
+                    <div id="kipsbay-deli" class="store-card">
+                        <details>
+                            <summary>Kips Bay Deli</summary>
+                            <p><a href="https://www.yelp.com/biz/square-deli-new-york-2">545 2nd Ave, New York, NY 10016</a></p>
+                            <p>Interviewed by Mimansaa Rao</p>
+                            <p>This interview was more insightful than I initially expected, particularly because the person I spoke with did not identify as a designer, yet clearly engaged in design thinking. One challenge I encountered was encouraging them to reflect on their own creativity. An unexpected insight was their idea to digitize the deli's loyalty card system, which shows how design can extend beyond visuals into systems and user experience.</p>
+                        </details>
+                    </div>
+
+                    <div id="stuytown-market" class="store-card">
+                        <details>
+                            <summary>Stuytown Market Place</summary>
+                            <p><a href="https://www.instagram.com/stuytownmarketplace/">279 1st Ave, New York, NY 10003</a></p>
+                            <p>Interviewed by Coral Song</p>
+                            <p>Interview notes can go here.</p>
+                        </details>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <footer class="thread">
+            Neighborhood delis as spaces for design, care, memory, labor, and community.
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="poster-intro.js"></script>
+</body>
+</html>
