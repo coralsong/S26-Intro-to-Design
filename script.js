@@ -33,6 +33,22 @@ const delis = [
         url: 'https://www.yelp.com/biz/square-deli-new-york-2'
     },
     {
+        name: 'Punjabi Deli',
+        detailsId: 'punjabi-deli',
+        address: '114 E 1st St, New York, NY 10009',
+        lat: 40.72395,
+        lng: -73.98780,
+        url: 'https://places.singleplatform.com'
+    },
+    {
+        name: 'Brooklyn Fare Deli',
+        detailsId: 'brooklyn-fare',
+        address: '227 Cherry St, New York, NY 10002',
+        lat: 40.71072,
+        lng: -73.98882,
+        url: 'https://shop.brooklynfare.com/retailer/information/3198'
+    },
+    {
         name: 'Stuytown Market Place',
         detailsId: 'stuytown-market',
         address: '279 1st Ave, New York, NY 10003',
@@ -84,8 +100,24 @@ const deliRoutes = [
         color: '#ff6319',
         stops: [
             [40.73263, -73.98133],
-            [40.7352, -73.9907],
-            [40.7391, -73.9962],
+            [40.7281, -73.9844],
+            [40.72395, -73.98780]
+        ]
+    },
+    {
+        color: '#b933ad',
+        stops: [
+            [40.72395, -73.98780],
+            [40.7173, -73.9878],
+            [40.71072, -73.98882]
+        ]
+    },
+    {
+        color: '#fccc0a',
+        stops: [
+            [40.71072, -73.98882],
+            [40.7192, -73.9961],
+            [40.7319, -74.00079],
             [40.74235, -74.00079]
         ]
     }
@@ -117,8 +149,12 @@ const tramPath = [
     [40.74224, -73.97835],
     [40.7373, -73.97835],
     [40.73263, -73.98133],
-    [40.7352, -73.9907],
-    [40.7391, -73.9962],
+    [40.7281, -73.9844],
+    [40.72395, -73.98780],
+    [40.7173, -73.9878],
+    [40.71072, -73.98882],
+    [40.7192, -73.9961],
+    [40.7319, -74.00079],
     [40.74235, -74.00079]
 ];
 

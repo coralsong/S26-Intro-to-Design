@@ -5,6 +5,8 @@
 body {
   margin: 0;
   color: #090909;
+  caret-color: transparent;
+  cursor: default;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   background:
     repeating-conic-gradient(from 0deg at 50% 46%, rgba(255, 255, 255, 0.22) 0deg 7deg, transparent 7deg 15deg),
@@ -40,7 +42,6 @@ body.intro-active {
   padding: clamp(26px, 6vw, 58px);
   color: #fff;
   background: #1200bd;
-  border: 10px solid #ff1616;
   box-shadow: 12px 12px 0 #050505;
   text-align: center;
   text-transform: uppercase;
@@ -268,16 +269,49 @@ body.intro-active {
 
 .store-card {
   border: 8px solid #050505;
-  background: #ffda2d;
+  background: #050505;
+  overflow: hidden;
 }
 
 summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
   padding: 10px 12px;
   color: #fff;
   background: #050505;
   font-size: 22px;
+  line-height: 1;
+  min-height: 48px;
   text-transform: uppercase;
+}
+
+summary::marker {
+  content: "";
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: "▶";
+  flex: 0 0 auto;
+  color: #fff;
+  font-size: 16px;
+}
+
+details[open] summary {
+  border-bottom: 5px solid #050505;
+}
+
+details[open] summary::before {
+  content: "▼";
+}
+
+.store-card details[open] {
+  background: #ffda2d;
 }
 
 .store-card p {
